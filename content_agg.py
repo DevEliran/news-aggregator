@@ -37,8 +37,7 @@ class RedditHotProgramming(RedditSource):
         self.hot_submissions = []
 
     def fetch(self, limit: int):
-        for submission in self.reddit_con.subreddit('programming').hot(limit=limit):
-            self.hot_submissions.append(submission)
+        self.hot_submissions = self.reddit_con.subreddit('programming').hot(limit=limit)
 
     def __repr__(self):
         urls = []
