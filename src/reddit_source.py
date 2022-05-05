@@ -59,7 +59,7 @@ class RedditSource(Source):
 
 
     def __repr__(self) -> str:
-        output = f"{Fore.GREEN}Reddit Source Results [Sub:{self.subreddit}, Metric: {self.metric}]{Style.RESET_ALL} \n"
+        output = f"{Fore.GREEN}Reddit Source Results [Sub: {self.subreddit}, Metric: {self.metric}]{Style.RESET_ALL} \n"
         for result in self.results:
             output += f"{result} \n"
         return output

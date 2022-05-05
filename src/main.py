@@ -18,6 +18,7 @@ if __name__ == '__main__':
     source_manager = SourceManager(
         [
             RedditSource(subreddit='programming', limit=10, metric='top'),
+            RedditSource(subreddit='showerthoughts', limit=3, metric='hot'),
             MediumSource(tag='programming', limit=5)
         ]
     )
