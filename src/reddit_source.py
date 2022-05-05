@@ -3,6 +3,7 @@ from typing import List
 import praw
 from praw.reddit import Reddit
 import os
+from colorama import Fore, Style
 
 CLIENT_ID = os.environ.get('REDDIT_CLIENT_ID')
 CLIENT_SECRET = os.environ.get('REDDIT_CLIENT_SECRET')
@@ -58,7 +59,7 @@ class RedditSource(Source):
 
 
     def __repr__(self) -> str:
-        output = f"Reddit Source Results [Sub:{self.subreddit}, Metric: {self.metric}] \n"
+        output = f"{Fore.GREEN}Reddit Source Results [Sub:{self.subreddit}, Metric: {self.metric}]{Style.RESET_ALL} \n"
         for result in self.results:
-            output += str(result) + "\n"
+            output += f"{result} \n"
         return output

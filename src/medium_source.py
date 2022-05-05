@@ -1,6 +1,7 @@
 from typing import List
 from models import Source, Result
 import feedparser
+from colorama import Fore, Style
 
 class MediumSource(Source):
     
@@ -38,7 +39,7 @@ class MediumSource(Source):
         return results
 
     def __repr__(self) -> str:
-        output = f"Medium Source Results [Tag: {self.tag}] \n"
+        output = f"{Fore.GREEN}Medium Source Results [Tag: {self.tag}]{Style.RESET_ALL} \n"
         for result in self.results:
-            output += str(result) + "\n"
+            output += f"{result} \n"
         return output

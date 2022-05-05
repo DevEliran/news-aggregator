@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from colorama import Fore, Style
 
 class Source(ABC):
     
@@ -17,4 +18,4 @@ class Result:
         self.url = url
 
     def __repr__(self) -> str:
-        return f"{self.title}: \n {self.url}"
+        return f"* \t {Fore.CYAN}{self.title}{Style.RESET_ALL}: {Fore.MAGENTA}{self.url} {Style.RESET_ALL} \n"
