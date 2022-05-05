@@ -42,7 +42,7 @@ def normalize_args(args):
     if args["metric"] and args["sub"] and len(args["metric"]) != len(args["sub"]):
         logging.error("every subreddit should have a metric specified")
         raise
-    
+
     return args
 
 def create_sources_from_args(args) -> List[Source]:
@@ -90,13 +90,3 @@ if __name__ == '__main__':
     sources = create_sources_from_args(args)
     source_manager = SourceManager(sources)
     source_manager()
-
-
-    # source_manager = SourceManager(
-    #     [
-    #         RedditSource(subreddit='programming', limit=10, metric='top'),
-    #         RedditSource(subreddit='showerthoughts', limit=3, metric='hot'),
-    #         MediumSource(tag='programming', limit=5)
-    #     ]
-    # )
-    # source_manager()
