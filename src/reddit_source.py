@@ -26,13 +26,7 @@ class RedditSource(Source):
         return self.reddit_con
 
 
-    def fetch(self) -> List:
-        """
-        @param subreddit: Name of the subreddit to fetch from
-        @param limit: Limit the amount of links to fetch (default: 10)
-        @param metric: Fetch by a specific metric; valid values: 'hot' \ 'top' (default: 'hot')
-        """
-        
+    def fetch(self) -> List[Result]: 
         if not self.subreddit or self.limit < 0 or self.metric.lower() not in self.valid_metrics:
             return
         

@@ -13,11 +13,7 @@ class MediumSource(Source):
     def connect(self):
         pass
 
-    def fetch(self):
-        """
-        @param subreddit: Name of the tag to fetch from
-        @param limit: Limit the amount of links to fetch (default: 10)
-        """
+    def fetch(self) -> List[Result]:
         if not self.tag or self.limit < 0:
             return
 
