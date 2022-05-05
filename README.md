@@ -1,4 +1,5 @@
 # Fuse
+![](https://img.shields.io/github/downloads/eliran-turgeman/fuse/total)
 
 Fuse is a content aggregation CLI tool written in Python.
 
