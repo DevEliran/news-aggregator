@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 
 setup(
-    name='Fuse',
+    name='Fuse-Con',
     description='Fuse is a content aggregation CLI tool written in Python',
     version='v1.0.0',
     license='MIT',
