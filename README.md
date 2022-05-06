@@ -8,7 +8,7 @@ Currently supports Reddit and Medium as sources.
 # Installation
 `pip install Fuse-Con`
 
-View PyPi project at https://pypi.org/project/Fuse-Con/1.0.0/
+View PyPi project at https://pypi.org/project/Fuse-Con/
 
 # Basic Usage
 `python ./src/main.py --reddit --sub programming --hot --limit 3`
