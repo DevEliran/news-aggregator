@@ -3,12 +3,12 @@ from setuptools import setup, find_packages
 
 setup(
     name='Fuse',
-    description='Fuse is a content aggregation CLI tool written in Python'
+    description='Fuse is a content aggregation CLI tool written in Python',
     version='v1.0.0',
     license='MIT',
     author="Eliran Turgeman",
     author_email='email@example.com',
-    python_requires=">=3.7"
+    python_requires=">=3.7",
     packages=find_packages('src'),
     package_dir={'': 'src'},
     url='https://github.com/Eliran-Turgeman/Fuse',

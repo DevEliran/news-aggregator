@@ -26,7 +26,6 @@ class SourceManager:
 
 
 def normalize_args(args):
-    print(args)
     if args["reddit"] and not args["sub"]:
         logging.error("detected --reddit flag without --sub flag")
         raise
