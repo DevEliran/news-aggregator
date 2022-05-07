@@ -2,27 +2,10 @@ import argparse
 import logging
 from typing import List
 
-from numpy import source
-from models import  Source
+from models import  Source, SourceManager
 from reddit_source import RedditSource
 from medium_source import MediumSource
 import sys
-
-
-class SourceManager:
-    def __init__(self, sources: List[Source] = None) -> None:
-        if not sources:
-            self.sources = []
-        else:
-            self.sources = sources
-
-    def __call__(self) -> None:
-        for source in self.sources:
-            source.fetch()
-            print(source)
-
-    def add(self, source: Source) -> None:
-        self.sources.append(source)
 
 
 def normalize_args(args):
