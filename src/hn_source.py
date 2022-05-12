@@ -16,7 +16,7 @@ class HackerNewsSource(Source):
         self.limit = limit
         self.valid_metrics = ['top', 'best', 'new']
         self.base_url = 'https://hacker-news.firebaseio.com/v0'
-        self.results = []
+        self.results : List[Result] = []
 
     def connect(self):
         pass
