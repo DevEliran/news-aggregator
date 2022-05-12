@@ -12,7 +12,7 @@ View PyPi project at https://pypi.org/project/Fuse-Con/
 
 # Basic Usage
 `python ./src/main.py --reddit --sub programming --hot --limit 3`
-* Note: To use reddit as a source you need to generate a key for Reddit's API, follow this guide on [reddit's github](https://github.com/reddit-archive/reddit/wiki/OAuth2-Quick-Start-Example#first-steps) and then set `REDDIT_CLIENT_ID` and `REDDIT_CLIENT_SECRET` as environment variables.
+* Note: To use reddit as a source you need to generate a key for Reddit's API, follow this guide on [reddit's github](https://github.com/reddit-archive/reddit/wiki/OAuth2-Quick-Start-Example#first-steps) and then set `REDDIT_CLIENT_ID` and `REDDIT_CLIENT_SECRET` as environment variables or pass these keys through the CLI with the arguments `reddit_id` and `reddit_secret`.
 
 ![Capture](https://user-images.githubusercontent.com/50831652/167022584-efdd95c6-0d78-463a-a468-dc08dd7989ae.JPG)
 
