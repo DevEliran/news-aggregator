@@ -2,9 +2,10 @@ import argparse
 import logging
 from typing import List
 
-from models import Source, SourceManager
-from reddit_source import RedditSource
-from medium_source import MediumSource
+from src.hn_source import HackerNewsSource
+from src.models import Source, SourceManager
+from src.reddit_source import RedditSource
+from src.medium_source import MediumSource
 import sys
 import os
 
@@ -59,6 +60,14 @@ def create_sources_from_args(args) -> List[Source]:
             )
             sources.append(medium_source)
 
+    if args["hn"]:
+        for metric in args["hn_metric"]:
+            hn_source = HackerNewsSource(
+                metric=metric,
+                limit=args['limit']
+            )
+            sources.append(hn_source)
+
     return sources
 
 
@@ -72,6 +81,9 @@ if __name__ == '__main__':
 
     parser.add_argument('--medium', action='store_true')
     parser.add_argument('--tag', action='append', type=str)
+
+    parser.add_argument('--hn', action='store_true')
+    parser.add_argument('--hn_metric', action='append', default=['top'])
 
     parser.add_argument('--limit', action='store', type=int, default=10)
 

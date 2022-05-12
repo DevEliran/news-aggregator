@@ -1,4 +1,4 @@
-from models import Source, Result
+from src.models import Source, Result
 from typing import List
 import praw
 from praw.reddit import Reddit

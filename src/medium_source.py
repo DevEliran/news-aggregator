@@ -1,5 +1,5 @@
 from typing import List
-from models import Source, Result
+from src.models import Source, Result
 import feedparser
 from colorama import Fore, Style
 

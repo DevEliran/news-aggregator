@@ -36,5 +36,7 @@ class Result:
         self.url = url
 
     def __repr__(self) -> str:
+        if not self.title or not self.url:
+            return ""
         return f"* \t {Fore.CYAN}{self.title}{Style.RESET_ALL}:" \
                f" {Fore.MAGENTA}{self.url} {Style.RESET_ALL} \n"
