@@ -2,16 +2,25 @@ import argparse
 import logging
 from typing import List
 
-from models import  Source, SourceManager
+from models import Source, SourceManager
 from reddit_source import RedditSource
 from medium_source import MediumSource
 import sys
+import os
 
 
 def normalize_args(args):
     if args["reddit"] and not args["sub"]:
         logging.error("detected --reddit flag without --sub flag")
         raise
+    if args["reddit"] and not args["reddit_id"] or \
+        args["reddit"] and not args["reddit_secret"]:
+        if not os.environ.get('REDDIT_CLIENT_ID') or not\
+                os.environ.get('REDDIT_CLIENT_SECRET'):
+            logging.error("Unable to initiate reddit source - no credentials "
+                          "passed, see --reddit-id and --reddit-secret "
+                          "arguments")
+            raise
     if args["medium"] and not args["tag"]:
         logging.error("detected --medium flag without --tag flag")
         raise
@@ -27,6 +36,7 @@ def normalize_args(args):
 
     return args
 
+
 def create_sources_from_args(args) -> List[Source]:
     sources = []
 
@@ -35,7 +45,9 @@ def create_sources_from_args(args) -> List[Source]:
             reddit_source = RedditSource(
                 subreddit=subreddit,
                 limit=args["limit"],
-                metric=metric
+                metric=metric,
+                reddit_id=args["reddit_id"],
+                reddit_secret=args['reddit_secret']
             )
             sources.append(reddit_source)
 
@@ -50,12 +62,13 @@ def create_sources_from_args(args) -> List[Source]:
     return sources
 
 
-
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--reddit', action='store_true')
     parser.add_argument('--sub', action='append', type=str)
     parser.add_argument('--metric', action='append', type=str)
+    parser.add_argument('--reddit_id', action='store', type=str)
+    parser.add_argument('--reddit_secret', action='store', type=str)
 
     parser.add_argument('--medium', action='store_true')
     parser.add_argument('--tag', action='append', type=str)
@@ -66,7 +79,8 @@ if __name__ == '__main__':
         args = normalize_args(vars(parser.parse_args()))
     except Exception as e:
         print(e)
-        logging.info("Unable to parse settings, turn on LOG_LEVEL=ERROR for a detailed log")
+        logging.info("Unable to parse settings, turn on LOG_LEVEL=ERROR for a "
+                     "detailed log")
         sys.exit(1)
 
     sources = create_sources_from_args(args)

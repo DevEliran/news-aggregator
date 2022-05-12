@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from colorama import Fore, Style
 from typing import List
 
+
 class Source(ABC):
     
     @abstractmethod
@@ -35,4 +36,5 @@ class Result:
         self.url = url
 
     def __repr__(self) -> str:
-        return f"* \t {Fore.CYAN}{self.title}{Style.RESET_ALL}: {Fore.MAGENTA}{self.url} {Style.RESET_ALL} \n"
+        return f"* \t {Fore.CYAN}{self.title}{Style.RESET_ALL}:" \
+               f" {Fore.MAGENTA}{self.url} {Style.RESET_ALL} \n"
