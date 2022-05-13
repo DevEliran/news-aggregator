@@ -2,30 +2,52 @@ import asyncio
 import logging
 import os
 from typing import List
-
 import requests
+from colorama import Fore, Style
 
 from src.models import Source, Result
-from colorama import Fore, Style
+
+
+"""
+HackerNews module, responsible for querying hackernews API.
+"""
 
 
 class HackerNewsSource(Source):
+    """
+    HackerNewsSource class accepts a metric from self.valid_metrics and a limit.
+    Queries the HackerNews API with regarding to the specified metric and limit.
+    """
 
     def __init__(self, metric: str = 'top', limit: int = 10):
+        """
+        Initiate valid metrics, base URL for API and an empty results list.
+        """
         self.metric = metric
         self.limit = limit
         self.valid_metrics = ['top', 'best', 'new']
         self.base_url = 'https://hacker-news.firebaseio.com/v0'
-        self.results : List[Result] = []
+        self.results: List[Result] = []
 
     def connect(self):
+        """
+        HackerNews API doesn't require an API key, hence there's no need to
+        implement `connect`
+        """
         pass
 
     def fetch(self) -> None:
+        """
+        Asynchronous Wrapper for the actual fetch mechanism `do_fetch`.
+        """
         results = asyncio.run(self.do_fetch())
         self.results = results
 
     async def do_fetch(self) -> List[Result]:
+        """
+        Retrieves the stories ids based on a metric and then fetches each story
+        details by the id
+        """
         if self.limit < 0 or self.metric.lower() not in self.valid_metrics:
             return []
 
@@ -49,11 +71,14 @@ class HackerNewsSource(Source):
         return results
 
     async def fetch_story_by_id(self, story_id: str) -> Result:
+        """
+        Fetching a single story details by the story_id
+        """
         request_url = f"{self.base_url}/item/{story_id}.json"
 
         response = requests.get(request_url)
         if not response.ok:
-            logging.info(f"failed to retrieve {story_id}")
+            logging.info("failed to retrieve %".format(story_id))
             return Result(
                 title="",
                 url=""
@@ -67,6 +92,9 @@ class HackerNewsSource(Source):
         )
 
     def __repr__(self) -> str:
+        """
+        HackerNewsSource string representation
+        """
         output = f"{Fore.GREEN}HackerNews Source Results " \
                  f"[Metric: {self.metric}]{Style.RESET_ALL} \n"
         for result in self.results:
