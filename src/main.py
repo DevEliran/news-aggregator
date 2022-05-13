@@ -1,18 +1,23 @@
 import argparse
 import logging
 from typing import List
+import sys
+import os
 
 from src.hn_source import HackerNewsSource
 from src.models import Source, SourceManager
 from src.reddit_source import RedditSource
 from src.medium_source import MediumSource
-import sys
-import os
-
 from util.banner import banner as fuse_banner
 
 
-def run(banner: str = fuse_banner, argv: List[str] = sys.argv[1:]):
+def run(banner: str = fuse_banner, argv: List[str] = sys.argv[1:]) -> None:
+    """
+    Fuse entry point.
+    Creates the sources from the arguments passed and executes them.
+    @param banner: Fuse banner
+    @param argv: arguments configuration
+    """
     config = create_config(argv)
 
     try:
@@ -28,7 +33,12 @@ def run(banner: str = fuse_banner, argv: List[str] = sys.argv[1:]):
     source_manager()
 
 
-def create_config(argv):
+def create_config(argv: List[str]) -> argparse.Namespace:
+    """
+    Parsing the arguments and returning a configuration
+    @param argv: arguments configuration
+    @return: configuration for source creation
+    """
     parser = argparse.ArgumentParser(description="Content aggregation CLI")
     add_parser_args(parser)
     config = parser.parse_args(argv)
@@ -36,7 +46,11 @@ def create_config(argv):
     return config
 
 
-def normalize_config(config):
+def normalize_config(config: argparse.Namespace):
+    """
+    Validating the correctness of the configuration
+    @param config: configuration to validate
+    """
     if config.reddit and not config.sub:
         logging.error("detected --reddit flag without --sub flag")
         raise ValueError("bad config")
@@ -67,10 +81,13 @@ def normalize_config(config):
         logging.error("every subreddit should have a metric specified")
         raise ValueError("bad config")
 
-    return config
 
-
-def create_sources_from_args(config) -> List[Source]:
+def create_sources_from_args(config: argparse.Namespace) -> List[Source]:
+    """
+    Creates Source objects from specified configuration
+    @param config: configuration for source creation
+    @return: List of sources created based on the configuration
+    """
     sources = []
 
     if config.reddit:
@@ -104,6 +121,9 @@ def create_sources_from_args(config) -> List[Source]:
 
 
 def add_parser_args(parser: argparse.ArgumentParser) -> None:
+    """
+    Adding parser arguments
+    """
     parser.add_argument('--reddit', action='store_true')
     parser.add_argument('--sub', action='append', type=str)
     parser.add_argument('--metric', action='append', type=str)
