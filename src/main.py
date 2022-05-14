@@ -4,6 +4,7 @@ from typing import List
 import sys
 import os
 
+from src.aws_blog_source import AwsBlogSource
 from src.hn_source import HackerNewsSource
 from src.models import Source, SourceManager
 from src.reddit_source import RedditSource
@@ -117,6 +118,14 @@ def create_sources_from_args(config: argparse.Namespace) -> List[Source]:
             )
             sources.append(hn_source)
 
+    if config.aws:
+        for category in config.aws_category:
+            aws_source = AwsBlogSource(
+                category=category,
+                limit=config.limit
+            )
+        sources.append(aws_source)
+
     return sources
 
 
@@ -135,6 +144,9 @@ def add_parser_args(parser: argparse.ArgumentParser) -> None:
 
     parser.add_argument('--hn', action='store_true')
     parser.add_argument('--hn_metric', action='append', default=['top'])
+
+    parser.add_argument('--aws', action='store_true')
+    parser.add_argument('--aws_category', action='append')
 
     parser.add_argument('--limit', action='store', type=int, default=10)
 
