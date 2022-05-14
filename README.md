@@ -1,5 +1,7 @@
 # Fuse
 ![](https://img.shields.io/github/downloads/eliran-turgeman/fuse/total)
+![](https://img.shields.io/github/license/eliran-turgeman/fuse)
+![](https://img.shields.io/github/commit-activity/w/eliran-turgeman/fuse/main)
 
 Fuse is a content aggregation CLI tool written in Python.
 
