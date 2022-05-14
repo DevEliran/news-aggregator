@@ -1,3 +1,5 @@
+import pathlib
+
 from setuptools import setup, find_packages
 
 from util.version import VERSION
@@ -6,9 +8,18 @@ from util.version import VERSION
 Setup module for Fuse
 """
 
+# The directory containing this file
+HERE = pathlib.Path(__file__).parent
+
+# The text of the README file
+README = (HERE / "README.md").read_text()
+
+
 setup(
     name='Fuse-Con',
     description='Fuse is a content aggregation CLI tool written in Python',
+    long_description=README,
+    long_description_content_type="text/markdown",
     version=VERSION,
     license='MIT',
     author="Eliran Turgeman",
@@ -26,5 +37,9 @@ setup(
         'pytest-mock==3.7.0',
         'requests'
     ],
-
+    classifiers=[
+        "License :: MIT License",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.7",
+    ],
 )
