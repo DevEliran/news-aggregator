@@ -2,8 +2,6 @@ import pathlib
 
 from setuptools import setup, find_packages
 
-from util.version import VERSION
-
 """
 Setup module for Fuse
 """
@@ -20,7 +18,7 @@ setup(
     description='Fuse is a content aggregation CLI tool written in Python',
     long_description=README,
     long_description_content_type="text/markdown",
-    version=VERSION,
+    version='1.0.0',
     license='MIT',
     author="Eliran Turgeman",
     author_email='email@example.com',
