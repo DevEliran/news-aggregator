@@ -8,10 +8,10 @@ from src.hn_source import HackerNewsSource
 from src.models import Source, SourceManager
 from src.reddit_source import RedditSource
 from src.medium_source import MediumSource
-from util.banner import banner as fuse_banner
+from util.banner import BANNER as FUSE_BANNER
 
 
-def run(banner: str = fuse_banner, argv: List[str] = sys.argv[1:]) -> None:
+def run(banner: str = FUSE_BANNER, argv: List[str] = sys.argv[1:]) -> None:
     """
     Fuse entry point.
     Creates the sources from the arguments passed and executes them.
