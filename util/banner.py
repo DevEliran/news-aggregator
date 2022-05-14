@@ -1,6 +1,10 @@
-from util.version import version
+from util.version import VERSION
 
-banner = r"""
+"""
+Fuse banner for CLI runs.
+"""
+
+BANNER = f"""
 ███████╗██╗   ██╗███████╗███████╗
 ██╔════╝██║   ██║██╔════╝██╔════╝
 █████╗  ██║   ██║███████╗█████╗  
@@ -8,4 +12,4 @@ banner = r"""
 ██║     ╚██████╔╝███████║███████╗
 ╚═╝      ╚═════╝ ╚══════╝╚══════╝
 
-By Eliran Turgeman | version: {}""".format(version)
+By Eliran Turgeman | version: {VERSION}"""
