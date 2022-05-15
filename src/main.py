@@ -124,7 +124,7 @@ def create_sources_from_args(config: argparse.Namespace) -> List[Source]:
                 category=category,
                 limit=config.limit
             )
-        sources.append(aws_source)
+            sources.append(aws_source)
 
     return sources
 
@@ -143,7 +143,7 @@ def add_parser_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument('--tag', action='append', type=str)
 
     parser.add_argument('--hn', action='store_true')
-    parser.add_argument('--hn_metric', action='append', default=['top'])
+    parser.add_argument('--hn_metric', action='append')
 
     parser.add_argument('--aws', action='store_true')
     parser.add_argument('--aws_category', action='append')
