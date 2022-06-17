@@ -14,7 +14,7 @@ README = (HERE / "README.md").read_text()
 
 
 setup(
-    name='Fuse-Con',
+    name='rfuse',
     description='Fuse is a content aggregation CLI tool written in Python',
     long_description=README,
     long_description_content_type="text/markdown",
